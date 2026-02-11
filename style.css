@@ -1,0 +1,107 @@
+/* <-- RESET --> */
+*,
+*::before,
+*::after {
+    box-sizing: border-box;
+}
+
+*:not(dialog) {
+    margin: 0;
+}
+
+@media (prefers-reduced-motion: no-preference) {
+    html {
+        interpolate-size: allow-keywords;
+    }
+}
+
+body {
+    line-height: 1.5;
+    -webkit-font-smoothing: antialiased;
+}
+
+img,
+picture,
+video,
+canvas,
+svg {
+    display: block;
+    max-width: 100%;
+}
+
+input,
+button,
+textarea,
+select {
+    font: inherit;
+}
+
+p,
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+    overflow-wrap: break-word;
+}
+
+p {
+    text-wrap: pretty;
+}
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+    text-wrap: balance;
+}
+
+#root,
+#__next {
+    isolation: isolate;
+}
+
+/* <-- VARIABLES --> */
+:root {
+    /* CSS HEX */
+    --frosted-mint: #d6f8d6ff;
+    --muted-teal: #7fc6a4ff;
+    --blue-slate: #5d737eff;
+    --charcoal: rgb(46, 43, 49);
+    --canary-yellow: #faf33eff;
+
+    /* Paleta de colores */
+    --color-text: var(--charcoal);
+    --color-bg: var(--frosted-mint);
+    --color-accent: var(--charcoal);
+
+    --color-text-dark: var(--frosted-mint);
+    --color-bg-dark: var(--charcoal);
+    --color-accent-dark: var(--canary-yellow);
+
+    /* Fuentes*/
+    --font-primary:
+        'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+    --font-title: 'Arial Black', 'Arial Bold', Gadget, sans-serif;
+
+    /* Escala*/
+    --scala: 1.2;
+    --base: 1rem;
+
+    --size-x-large: calc(var(--size-large) * var(--scala));
+    --size-large: calc(var(--size-medium) * var(--scala));
+    --size-medium: calc(var(--size-normal) * var(--scala));
+    --size-normal: var(--base);
+    --size-small: calc(var(--size-normal) / var(--scala));
+    --size-x-small: calc(var(--size-small) / var(--scala));
+}
+
+/* <-- BASE --> */
+body {
+    background-color: var(--color-bg);
+    color: var(--color-text);
+}
+
+/* <-- STYLES --> */
