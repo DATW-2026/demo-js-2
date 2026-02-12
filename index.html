@@ -7,16 +7,27 @@
         <title>Demo JS 2</title>
         <link rel="shortcut icon" href="favicon.svg" type="image/xml-svg" />
         <link rel="stylesheet" href="style.css" />
-        <script type="module" src="main.js" defer></script>
+        <script type="module" src="index.js"></script>
     </head>
     <body>
         <header>
             <nav>
-                <menu class="dark">Inicio</menu>
+                <menu class="dark">
+                    <li><a href="" id="menu-icon">Icono Menú</a></li>
+                </menu>
             </nav>
-            <label for="theme-toggle">
-                <button type="button" id="theme-toggle">Tema oscuro</button>
-            </label>
+
+            <dialog id="menu-dialog">
+                <menu>
+                    <li><a href="">Inicio</a></li>
+                </menu>
+                <button>Cerrar</button>
+            </dialog>
+
+            <div class="checkbox-apple">
+                <input class="yep" id="theme-toggle" type="checkbox" />
+                <label for="theme-toggle">Tema oscuro</label>
+            </div>
             <hgroup>
                 <h1>¡Hola!</h1>
                 <p>Soy un párrafo</p>

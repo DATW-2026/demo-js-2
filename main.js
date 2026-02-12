@@ -1,8 +1,32 @@
-console.log('Hello JS!');
+export let theme = 'light';
 
-const buttonElement = document.querySelector('#theme-toggle');
-buttonElement.addEventListener('click', makeAny);
+const handleChange = (event) => {
+    const element = event.target;
+    theme = element.checked ? 'dark' : 'light';
+    console.log(theme);
+};
 
-function makeAny() {
-    console.log('Han hecho click');
+const handleMenu = (event) => {
+    event.preventDefault();
+    console.log(event.target.localName);
+    const menuDialogElement = document.querySelector('#menu-dialog');
+
+    if (event.target.localName === 'button') {
+        menuDialogElement.close();
+    } else {
+        menuDialogElement.showModal();
+    }
+};
+
+export function main() {
+    console.log('Main loaded');
+
+    const toggleElement = document.querySelector('#theme-toggle');
+    toggleElement.addEventListener('change', handleChange);
+
+    const menuIconElement = document.querySelector('#menu-icon');
+    menuIconElement.addEventListener('click', handleMenu);
+
+    const closeDialogElement = document.querySelector('#menu-dialog button');
+    closeDialogElement.addEventListener('click', handleMenu);
 }
