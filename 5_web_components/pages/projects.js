@@ -1,4 +1,5 @@
 export const projectsPage = () => {
+    console.log('Projects loaded');
 
     const setTemplate = () => `<section id="projects">
       <h2>Preguntas frecuentes</h2>
@@ -11,8 +12,7 @@ export const projectsPage = () => {
         <p>Texto de los detalles de la pregunta...</p>
       </details>
       <form></form>
-    </section>`
+    </section>`;
 
-
-    document.querySelector('main').innerHTML = setTemplate()
-}
+    document.querySelector('main').innerHTML = setTemplate();
+};

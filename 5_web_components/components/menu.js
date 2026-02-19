@@ -1,7 +1,31 @@
+import { navigate } from '../main.js';
+
+const handleDialogMenu = (event) => {
+    console.log('Click', event);
+    const current = event.currentTarget;
+    // const target = event.target
+    event.stopPropagation();
+    // console.log('Current')
+    // console.dir(current)
+    // console.log('Target')
+    // console.dir(target)
+    const menuDialogElement = document.querySelector('#menu-dialog');
+    if (current.localName === 'a') {
+        event.preventDefault();
+        menuDialogElement.showModal();
+    } else if (current.localName === 'menu') {
+        event.preventDefault();
+        navigate(event.target.href);
+        menuDialogElement.close();
+    } else {
+        menuDialogElement.close();
+    }
+};
+
 export const menu = (menuOptions) => {
-    const selector = "app-menu";
-    const setTemplate = (menuClass) => {
-        if (menuClass === "mobile-menu") {
+    const selector = 'app-menu';
+    const setTemplate = (menuClass = '') => {
+        if (menuClass === 'mobile-menu') {
             return `<menu class="mobile-menu">
             <li>
             <a href="#" id="menu-icon">
@@ -17,7 +41,7 @@ export const menu = (menuOptions) => {
 
         return `
             <menu class="${menuClass}">
-                ${menuOptions.map(option => `<li><a href="${option.path}">${option.label}</a></li>`).join('')}
+                ${menuOptions.map((option) => `<li><a href="${option.path}">${option.label}</a></li>`).join('')}
             </menu>
             `;
     };
@@ -27,4 +51,12 @@ export const menu = (menuOptions) => {
     elements.forEach(
         (element) => (element.outerHTML = setTemplate(element.dataset.type)),
     );
+
+    const menuIconElement = document.querySelector('#menu-icon');
+    const menuDialogElement = document.querySelector('#menu-dialog menu');
+
+    menuIconElement.addEventListener('click', handleDialogMenu);
+    menuDialogElement.addEventListener('click', handleDialogMenu);
+
+    document.body.addEventListener('click', handleDialogMenu);
 };
