@@ -4,42 +4,45 @@ import { menu } from './components/menu.js';
 import { contactPage } from './pages/contact.js';
 import { homePage } from './pages/home.js';
 import { projectsPage } from './pages/projects.js';
+import { todoPage } from './pages/todo/todo.js';
 
-const menuOptions = [
+const routes = [
     {
         path: '/',
         label: 'Inicio',
+        component: homePage,
     },
     {
         path: '/projects',
         label: 'Proyectos',
+        component: projectsPage,
+    },
+    {
+        path: '/todo',
+        label: 'Tareas',
+        component: todoPage,
     },
     {
         path: '/contact',
         label: 'Contacto',
+        component: contactPage,
     },
 ];
 
 export const navigate = (url = '') => {
     console.log('URL', url);
+
+    if (location.href === url) {
+        return;
+    }
+
     history.pushState({}, null, url);
     let path = url.split('/').pop();
-    if (!path) path = 'home';
-    console.log('Path', path);
-    // console.log("navegando a " + path);
 
-    switch (path) {
-        case 'home':
-            homePage();
-            break;
-        case 'projects':
-            projectsPage();
-            break;
-        case 'contact':
-            contactPage();
-            break;
-        default:
-            break;
+    const selectedOption = routes.find((o) => o.path === '/' + path);
+
+    if (selectedOption) {
+        selectedOption.component();
     }
 };
 
@@ -47,7 +50,7 @@ export function main() {
     console.log('Loaded main');
     navigate(location.pathname);
     header();
-    menu(menuOptions);
+    menu(routes);
     footer();
 
     window.addEventListener('popstate', (event) => {
