@@ -1,27 +1,48 @@
-export class Invoice {
-    #name;
-    #address;
-    #phone;
-    #nif;
-    #client;
-    #items;
-    #total;
-    #iva;
-    #payment;
+import { Company } from './company.js';
 
-    constructor(name, address, phone, nif, client, items = [], iva, payment) {
-        this.#name = name;
-        this.#address = address;
-        this.#phone = phone;
-        this.#nif = nif;
-        this.#client = client;
-        this.#items = items;
-        this.#total = 0;
-        this.#iva = iva;
-        this.#payment = payment;
+export class Invoice {
+    static #brand = new Company('PepeSL', '55154651654X');
+    static #lastId = 0;
+    static #getID() {
+        const year = new Date().getFullYear();
+        const id = String(year) + '/' + String(++this.#lastId);
+        return id;
     }
 
-    totalValue() {
-        this.#items.map;
+    #id = Invoice.#getID();
+    #client;
+    #items;
+    #iva;
+    #total = 0;
+
+    constructor(client, product, amount, iva = 1.21) {
+        this.#items = [
+            {
+                product: product,
+                amount: amount,
+            },
+        ];
+        this.#iva = iva;
+        this.#client = client;
+    }
+
+    get client() {
+        return this.#client;
+    }
+
+    addProduct(product, amount) {
+        this.#items.push(product, amount);
+    }
+
+    #calculatePrice(price) {}
+
+    printInvoice() {
+        const invoice = `
+        =====================================
+        ${Invoice.#brand.name}
+        NIF: ${Invoice.#brand.nif}
+
+        `;
+        console.log(invoice);
     }
 }
